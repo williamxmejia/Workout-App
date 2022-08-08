@@ -4,30 +4,52 @@
 <body>
     <header th:replace="partials/partials.html :: navbar"></header>
 
-    <form th:action="@{/workout-create}" th:object="${exercise}" method="post">
-        <label for="name">Title</label>
-        <input type="text" th:field="*{name}" id="name">
+    <section class="container">
+        <form th:action="@{/workout-create}" th:object="${exercise}" method="post">
+            <div class="mt-4">
+                <div>
+                    <label for="name" class="display-6">Title*</label>
+                </div>
+                <input type="text" th:field="*{name}" id="name" class="form-control">
+            </div>
 
-        <label for="typeofw">Type of workout:</label>
 
-        <select th:field="*{typeOfWorkout}" id="typeofw">
-            <option value="strength">Strength</option>
-            <option value="endurance">Endurance</option>
-            <option value="weight loss">Weight loss</option>
-            <option value="cardio">Cardio</option>
-        </select>
+            <div class="mt-4">
+                <div>
+                    <label for="typeofw" class="display-6">Type of workout*</label>
+                </div>
+                <select th:field="*{typeOfWorkout}" id="typeofw" class="form-control" >
+                    <option value="strength">Strength</option>
+                    <option value="endurance">Endurance</option>
+                    <option value="weight loss">Weight loss</option>
+                    <option value="cardio">Cardio</option>
+                </select>
+            </div>
 
-        <label for="upper">Upper</label>
-        <input type="checkbox" th:field="*{upperOrLower}" value="upper" id="upper">
+            <div class="mt-4 form-check">
+                <label class="display-6">Upper and/or lower body</label>
+                <div>
+                    <label for="upper">Upper</label>
+                    <input type="checkbox" th:field="*{upperOrLower}" value="upper" id="upper">
+                </div>
+                <div>
+                    <label for="lower">Lower</label>
+                    <input type="checkbox" th:field="*{upperOrLower}" value="lower" id="lower">
+                </div>
 
-        <label for="lower">Lower</label>
-        <input type="checkbox" th:field="*{upperOrLower}" value="lower" id="lower">
+            </div>
 
-        <label for="exerciseOne">Exercises</label>
-        <textarea type="text" th:field="*{content}" id="exerciseOne"></textarea>
+            <div class="mt-4">
+                <div class="mb-2">
+                    <label for="exerciseOne" class="display-6">Exercises*</label>
+                </div>
+                <textarea type="text" th:field="*{content}" id="exerciseOne" class="form-control" rows="15"></textarea>
+            </div>
 
-        <button>Create</button>
-    </form>
+            <button>Create</button>
+        </form>
+    </section>
+
 
 
 </body>
