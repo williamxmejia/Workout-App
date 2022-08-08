@@ -60,4 +60,11 @@ public class UserController {
     }
 
 
+//    @CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping("/api")
+    public String api(){
+        return "views/api-test";
+    }
+
+
 }
