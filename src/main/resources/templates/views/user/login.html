@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="partials/partials.html :: head ('Profile')"></head>
+
+<body>
+
+<header th:replace="partials/partials.html :: navbar"></header>
+<h1>Login</h1>
+
+<form th:action="@{/login}" method="post">
+    <div class="form-outline">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control form-control-lg"
+               placeholder="Enter a valid user name" name="username"/>
+    </div>
+    <div class="form-outline mt-3">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control form-control-lg"
+               placeholder="Enter password" name="password"/>
+    </div>
+    <button>Submit</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head ('Fitness App')"></head>
+<body>
+
+<header th:replace="partials/partials.html :: navbar"></header>
+
+<h1 class="d-flex justify-content-center">Fitness App</h1>
+
+
+<nav class="container">
+    <div class="card-deck d-flex justify-content-center mt-5">
+        <div class="card mx-1">
+            <a href="#"><img class="card-img-top" src="images/dest.jpg" alt="Card image cap"></a>
+        </div>
+        <div class="card mx-1">
+            <a href="/login" ><img class="card-img-top" src="images/dumbbelsmall.jpg" alt="Card image cap"></a>
+        </div>
+        <div class="card mx-1">
+            <a href="#"><img class="card-img-top" src="images/lose1.jpg" alt="Card image cap"></a>
+        </div>
+        <div class="card mx-1">
+            <a href="#"><img class="card-img-top" src="images/running1.jpg" alt="Card image cap"></a>
+        </div>
+    </div>
+</nav>
+
+
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
+</body>
+</html>

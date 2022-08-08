@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="partials/partials.html :: head ('Exercises')"></head>
+<body>
+    <header th:replace="partials/partials.html :: navbar"></header>
+
+    <form th:action="@{/workout-create}" th:object="${exercise}" method="post">
+        <label for="name">Title</label>
+        <input type="text" th:field="*{name}" id="name">
+
+        <label for="typeofw">Type of workout:</label>
+
+        <select th:field="*{typeOfWorkout}" id="typeofw">
+            <option value="strength">Strength</option>
+            <option value="endurance">Endurance</option>
+            <option value="weight loss">Weight loss</option>
+            <option value="cardio">Cardio</option>
+        </select>
+
+        <label for="upper">Upper</label>
+        <input type="checkbox" th:field="*{upperOrLower}" value="upper" id="upper">
+
+        <label for="lower">Lower</label>
+        <input type="checkbox" th:field="*{upperOrLower}" value="lower" id="lower">
+
+        <label for="exerciseOne">Exercises</label>
+        <textarea type="text" th:field="*{content}" id="exerciseOne"></textarea>
+
+        <button>Create</button>
+    </form>
+
+
+</body>
+</html>
