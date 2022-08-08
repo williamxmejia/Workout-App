@@ -21,7 +21,7 @@ public class Workout {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
+//    @JsonIgnore
     private User user;
 
     public Workout() {
