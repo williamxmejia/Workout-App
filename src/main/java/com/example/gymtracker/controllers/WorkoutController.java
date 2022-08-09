@@ -7,10 +7,10 @@ import com.example.gymtracker.repositories.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping()
@@ -40,6 +40,16 @@ public class WorkoutController {
         workoutDao.save(workout);
 
         return "redirect:";
+    }
+
+    @GetMapping("/exercise/{id}")
+    public String showExercise(Model model, @PathVariable long id){
+
+        Workout workout = workoutDao.getById(id);
+        model.addAttribute("workout", workout);
+
+        return "views/exercises/individual-workout";
+
     }
 
 
