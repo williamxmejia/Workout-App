@@ -3,6 +3,7 @@ package com.example.gymtracker.controllers;
 
 import com.example.gymtracker.models.User;
 import com.example.gymtracker.models.Workout;
+import com.example.gymtracker.repositories.UserRepository;
 import com.example.gymtracker.repositories.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,12 @@ public class WorkoutController {
     private Workout workout;
 
     private final WorkoutRepository workoutDao;
+    private final UserRepository userDao;
 
-    public WorkoutController(WorkoutRepository workoutDao) {
+    public WorkoutController(WorkoutRepository workoutDao, UserRepository userDao) {
+
         this.workoutDao = workoutDao;
+        this.userDao = userDao;
     }
 
 
@@ -44,8 +48,15 @@ public class WorkoutController {
 
     @GetMapping("/exercise/{id}")
     public String showExercise(Model model, @PathVariable long id){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Workout workout = workoutDao.getById(id);
+
+//        if(user.getId() != 0){
+//            User user1 = userDao.getById(user.getId());
+//            model.addAttribute("user", user1);
+//        }
+
         model.addAttribute("workout", workout);
 
         return "views/exercises/individual-workout";

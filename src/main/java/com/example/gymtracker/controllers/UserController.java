@@ -1,21 +1,28 @@
 package com.example.gymtracker.controllers;
 
 import com.example.gymtracker.models.User;
+import com.example.gymtracker.models.Workout;
 import com.example.gymtracker.repositories.UserRepository;
+import com.example.gymtracker.repositories.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    private final WorkoutRepository workoutDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, WorkoutRepository workoutDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.workoutDao = workoutDao;
     }
 
     @GetMapping("/create-user")
@@ -41,10 +48,13 @@ public class UserController {
 
         String user1 = user.getUserName();
 
+        List<Workout> workout = workoutDao.findByUser(user);
+
         Long id = user.getId();
 
         model.addAttribute("id", id);
         model.addAttribute("user", user1);
+        model.addAttribute("workout", workout);
 
         if(!userDao.existsById(id)){
             return "views/home";
