@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="partials/partials.html :: head ('Workout')"></head>
+
 <body>
 
-<input type="hidden" th:value="${workout.id}">
+<header th:replace="partials/partials.html :: navbar"></header>
 
-<!--<p th:text="${workout.content}"></p>-->
-
+<h1 id="name" class="container"></h1>
 
 
 <div id="display1" th:value="${workout.id}" class="container"></div>
+<!--<span th:text="${workout.user.id == }"><button>Hello</button></span>-->
 
+<!--<span th:if="${workout.user.id == 'F'}">Female</span>-->
+<!--<span th:unless="${teacher.gender == 'F'}">Male</span>-->
+
+<input type="hidden" th:id="check-id">
+
+
+
+<footer th:replace="partials/partials.html :: footer"></footer>
 
 <script>
     const url1 = 'http://localhost:8080/exercises';
-    let m = [[${workout.id}]];
+    let idNumber = [[${workout.id}]];
 
 
     async function fetchExercises(){
@@ -31,12 +37,16 @@
 
         console.log(data)
 
-        document.getElementById("display1").innerText = data[m].content;
+        document.getElementById("display1").innerText = data[idNumber].content;
+        document.getElementById("name").innerText = data[idNumber].name;
+        document.getElementById("check-id").value = data[idNumber].user.id;
+        // document.getElementById("").innerText = data[idNumber].name;
 
     }
 
     fetchExercises();
 
 </script>
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
 </body>
 </html>
