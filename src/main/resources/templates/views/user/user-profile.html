@@ -14,7 +14,7 @@
 
     <div class="container d-flex justify-content-center mt-5">
         <th:block th:each="work: ${workout}">
-            <a href="#"><p class="mx-5" th:text="${work.name}" /></a>
+            <a th:href="@{/exercise/{id}(id=${work.id - 1})}"><p class="mx-5" th:text="${work.name}" /></a>
         </th:block>
     </div>
 
