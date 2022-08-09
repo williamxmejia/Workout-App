@@ -6,7 +6,37 @@
 </head>
 <body>
 
-<p th:text="${workout.content}"></p>
+<input type="hidden" th:value="${workout.id}">
 
+<!--<p th:text="${workout.content}"></p>-->
+
+
+
+<div id="display1" th:value="${workout.id}" class="container"></div>
+
+
+<script>
+    const url1 = 'http://localhost:8080/exercises';
+    let m = [[${workout.id}]];
+
+
+    async function fetchExercises(){
+
+        let response = await fetch(url1);
+
+        if (!response.ok) {
+            throw Error("Failed to fetch info");
+        }
+        const data = await response.json();
+
+        console.log(data)
+
+        document.getElementById("display1").innerText = data[m].content;
+
+    }
+
+    fetchExercises();
+
+</script>
 </body>
 </html>
