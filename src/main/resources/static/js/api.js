@@ -15,6 +15,8 @@ async function fetchData(){
 }
 
 async function fetchExercises(){
+
+
     let response = await fetch(url1);
 
     if (!response.ok) {
@@ -23,7 +25,9 @@ async function fetchExercises(){
     const data = await response.json();
 
     console.log(data)
+
     document.getElementById("display1").innerText = data[5].content;
+
 
 }
 
