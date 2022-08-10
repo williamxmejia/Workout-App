@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="partials/partials.html :: head ('Cardio')"></head>
+
+<body>
+
+<header th:replace="partials/partials.html :: navbar"></header>
+
+<h1>Cardio</h1>
+
+<div class="container d-flex justify-content-center mt-5">
+    <th:block th:each="work: ${workouts}">
+        <!--        <a th:href="@{/exercise/{id}(id=${work.id - 1})}">-->
+        <span class="mx-5" th:if="${work.typeOfWorkout == 'cardio'}"><p th:text="${work.name}"></p></span>
+        <!--        </a>-->
+    </th:block>
+</div>
+
+
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
+
+</body>
+</html>
