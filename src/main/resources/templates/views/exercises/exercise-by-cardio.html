@@ -9,10 +9,12 @@
 
 <h1>Cardio</h1>
 
-<div class="container d-flex justify-content-center mt-5">
+<div class="container d-flex justify-content-center mt-5 w-100 flex-wrap">
     <th:block th:each="work: ${workouts}">
         <!--        <a th:href="@{/exercise/{id}(id=${work.id - 1})}">-->
-        <span class="mx-5" th:if="${work.typeOfWorkout == 'cardio'}"><p th:text="${work.name}"></p></span>
+        <ul>
+            <span class="mx-5" th:if="${work.typeOfWorkout == 'cardio'}"><a th:href="@{/exercise/{id}(id=${work.id - 1})}"><li th:text="${work.name}"></li></a></span>
+        </ul>
         <!--        </a>-->
     </th:block>
 </div>
