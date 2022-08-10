@@ -63,5 +63,50 @@ public class WorkoutController {
 
     }
 
+    @GetMapping("/strength")
+    public String showStrength(Model model){
+
+        List<Workout> workouts = workoutDao.findAll();
+
+        System.out.println(workouts);
+
+        model.addAttribute("workouts", workouts);
+        return "views/exercises/exercise-by-strength";
+    }
+
+    @GetMapping("/cardio")
+    public String showCardio(Model model){
+
+        List<Workout> workouts = workoutDao.findAll();
+
+        System.out.println(workouts);
+
+        model.addAttribute("workouts", workouts);
+        return "views/exercises/exercise-by-cardio";
+    }
+
+    @GetMapping("/weight-loss")
+    public String showLoss(Model model){
+
+        List<Workout> workouts = workoutDao.findAll();
+
+        System.out.println(workouts);
+
+        model.addAttribute("workouts", workouts);
+        return "views/exercises/weight-loss";
+    }
+
+    @GetMapping("/endurance")
+    public String showEndurance(Model model){
+
+        List<Workout> workouts = workoutDao.findAll();
+
+        System.out.println(workouts);
+
+        model.addAttribute("workouts", workouts);
+        return "views/exercises/endurance";
+    }
+
+
 
 }
