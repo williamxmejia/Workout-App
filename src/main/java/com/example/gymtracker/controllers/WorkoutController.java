@@ -85,7 +85,7 @@ public class WorkoutController {
         return "views/exercises/exercise-by-cardio";
     }
 
-    @GetMapping("/weight-loss")
+    @GetMapping("/weigh-loss")
     public String showLoss(Model model){
 
         List<Workout> workouts = workoutDao.findAll();
