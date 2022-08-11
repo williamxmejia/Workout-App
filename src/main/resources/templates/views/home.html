@@ -14,7 +14,7 @@
             <a href="/strength"><img class="card-img-top" src="images/dest.jpg" alt="Card image cap"></a>
         </div>
         <div class="card mx-1">
-            <a href="/endurance" ><img class="card-img-top" src="images/dumbbelsmall.jpg" alt="Card image cap"></a>
+            <a href="/endurance"><img class="card-img-top" src="images/dumbbelsmall.jpg" alt="Card image cap"></a>
         </div>
         <div class="card mx-1">
             <a href="/weigh-loss"><img class="card-img-top" src="images/lose1.jpg" alt="Card image cap"></a>
@@ -24,6 +24,28 @@
         </div>
     </div>
 </nav>
+
+
+<section class="container mt-5">
+    <h3 class="text-center mt-5">Most Recent</h3>
+    <table class="table mt-5">
+        <tr>
+            <th class="col">Workout</th>
+            <th class="col">Type</th>
+            <th class="col">Author</th>
+        </tr>
+        <th:block th:each="work: ${workout}">
+            <tr>
+                <td><a th:href="@{/exercise/{id}(id=${work.id - 1})}">
+                    <th:block th:text="${work.name}"></th:block>
+                </a></td>
+                <td th:text="${work.typeOfWorkout}"></td>
+                <td th:text="${work.user.userName}"></td>
+
+            </tr>
+        </th:block>
+    </table>
+</section>
 
 
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
