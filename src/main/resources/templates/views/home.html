@@ -37,6 +37,7 @@
         <th:block th:each="work: ${workout}">
             <tr>
                 <td><a th:href="@{/exercise/{id}(id=${work.id - 1})}">
+
                     <th:block th:text="${work.name}"></th:block>
                 </a></td>
                 <td th:text="${work.typeOfWorkout}"></td>
