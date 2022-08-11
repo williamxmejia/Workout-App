@@ -29,6 +29,7 @@ public class HomeController {
         this.workoutDao = workoutDao;
     }
 
+
     @GetMapping("/")
     public String home(Model model) {
 
