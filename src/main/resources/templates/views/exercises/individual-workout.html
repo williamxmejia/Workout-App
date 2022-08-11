@@ -6,20 +6,16 @@
 
 <header th:replace="partials/partials.html :: navbar"></header>
 
-<h1 id="name" class="container"></h1>
+<h1 id="name"></h1>
 
 
 <div id="display1" th:value="${workout.id}" class="container"></div>
-<!--<span th:text="${workout.user.id == }"><button>Hello</button></span>-->
 
-<!--<span th:if="${workout.user.id == 'F'}">Female</span>-->
-<!--<span th:unless="${teacher.gender == 'F'}">Male</span>-->
 
 <input type="hidden" th:id="check-id">
 
 
 
-<footer th:replace="partials/partials.html :: footer"></footer>
 
 <script>
     const url1 = 'http://localhost:8080/exercises';
@@ -35,12 +31,17 @@
         }
         const data = await response.json();
 
-        console.log(data)
+        console.log(data);
 
-        document.getElementById("display1").innerText = data[idNumber].content;
-        document.getElementById("name").innerText = data[idNumber].name;
-        document.getElementById("check-id").value = data[idNumber].user.id;
-        // document.getElementById("").innerText = data[idNumber].name;
+        //Title
+        let name = document.getElementById("name");
+        name.setAttribute("class", "container");
+        name.innerText = data[idNumber].name;
+
+        //Content
+        let content = document.getElementById("display1");
+        content.setAttribute("class", "container mb-5");
+        content.innerText = data[idNumber].content;
 
     }
 
