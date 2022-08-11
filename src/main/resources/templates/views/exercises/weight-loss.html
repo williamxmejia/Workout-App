@@ -6,14 +6,26 @@
 
 <header th:replace="partials/partials.html :: navbar"></header>
 
-<h1>Weight Loss</h1>
+<h1 class="text-center mt-5">Weight Loss</h1>
 
-<div class="container d-flex justify-content-center mt-5 w-100 flex-wrap">
-  <th:block th:each="work: ${workouts}">
-    <!--        <a th:href="@{/exercise/{id}(id=${work.id - 1})}">-->
-    <span class="mx-5" th:if="${work.typeOfWorkout == 'weight loss'}"><a th:href="@{/exercise/{id}(id=${work.id - 1})}"><p class="display-6" th:text="${work.name}"></p></a></span>
-    <!--        </a>-->
-  </th:block>
+<div class="container mt-5 w-100">
+  <table class="table">
+    <tr>
+      <th class="col">Workout</th>
+      <th class="col">Author</th>
+    </tr>
+    <th:block th:each="work: ${workouts}">
+      <tr>
+                <span class="mx-5" th:if="${work.typeOfWorkout == 'weight loss'}">
+                    <td><a th:href="@{/exercise/{id}(id=${work.id - 1})}">
+                        <th:block th:text="${work.name}"></th:block>
+                    </a></td>
+                </span>
+        <span class="mx-5" th:if="${work.typeOfWorkout == 'weight loss'}"><a th:href="@{/exercise/{id}(id=${work.id - 1})}"><td th:text="${work.user.userName}"></td></a></span>
+
+      </tr>
+    </th:block>
+  </table>
 </div>
 
 
