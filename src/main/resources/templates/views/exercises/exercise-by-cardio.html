@@ -23,7 +23,9 @@
                         <th:block th:text="${work.name}"></th:block>
                     </a></td>
                 </span>
-                <span class="mx-5" th:if="${work.typeOfWorkout == 'cardio'}"><a th:href="@{/exercise/{id}(id=${work.id - 1})}"><td th:text="${work.user.userName}"></td></a></span>
+                <span class="mx-5" th:if="${work.typeOfWorkout == 'cardio'}"><a
+                        th:href="@{/exercise/{id}(id=${work.id - 1})}"><td
+                        th:text="${work.user.userName}"></td></a></span>
 
             </tr>
             <!--        </a>-->

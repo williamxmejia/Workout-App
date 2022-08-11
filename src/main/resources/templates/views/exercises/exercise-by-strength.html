@@ -21,13 +21,14 @@
                         <th:block th:text="${work.name}"></th:block>
                     </a></td>
                 </span>
-                <span class="mx-5" th:if="${work.typeOfWorkout == 'strength'}"><a th:href="@{/exercise/{id}(id=${work.id - 1})}"><td th:text="${work.user.userName}"></td></a></span>
+                <span class="mx-5" th:if="${work.typeOfWorkout == 'strength'}"><a
+                        th:href="@{/exercise/{id}(id=${work.id - 1})}"><td
+                        th:text="${work.user.userName}"></td></a></span>
 
             </tr>
         </th:block>
     </table>
 </div>
-
 
 
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
