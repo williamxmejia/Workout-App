@@ -46,7 +46,7 @@ public class ExercisesRestController {
 
 
     @GetMapping("/pages/{id}")
-    Page exercisePage(@PageableDefault(size = 4) Pageable pageable, @PathVariable String id) {
+    Page exercisePage(@PageableDefault(size = 10) Pageable pageable, @PathVariable String id) {
         return pagingDao.findAllBy(pageable.withPage(Integer.parseInt(id)));
     }
 

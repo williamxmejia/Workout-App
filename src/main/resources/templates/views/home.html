@@ -42,11 +42,64 @@
                 </a></td>
                 <td th:text="${work.typeOfWorkout}"></td>
                 <td th:text="${work.user.userName}"></td>
-
             </tr>
         </th:block>
     </table>
 </section>
+
+<nav class="text-center">
+    <ul class="pagination">
+        <li th:class="${workout.isFirst()}? 'disabled' : ''">
+            <span th:if='${workout.isFirst()}'>← First</span>
+            <a th:if='${not workout.isFirst()}' th:href="'?workout=0'">
+                ← First
+            </a>
+        </li>
+        <li th:class="${workout.hasPrevious()}? '' : 'disabled'">
+            <span th:if='${not workout.hasPrevious()}'>«</span>
+            <a
+                    th:if='${workout.hasPrevious()}'
+                    th:href="${workout.getNumber() - 1}"
+                    title='Go to previous workout'
+            >
+                «
+            </a>
+        </li>
+        <-- Show a link to each workout -->
+        <li th:each="i : ${#numbers.sequence(1, workout.getTotalPages())}">
+                <span
+                        th:if='${(i - 1) == param.workout}'
+                        th:text='${i}'>
+                    1
+                </span>
+            <a
+                    th:if='${not ((i - 1) == param.workout)}'
+                    th:href="${(i -1)}"
+            >
+                <span th:text='${i}'>1</span>
+            </a>
+        </li>
+        <li th:class="${workout.hasNext()} ? '' : 'disabled'">
+            <span th:if='${not workout.hasNext()}'>»</span>
+            <a
+                    th:if='${workout.hasNext()}'
+                    th:href="${workout.getNumber() + 1}"
+                    title='Go to next workout'
+            >
+                »
+            </a>
+        </li>
+        <li th:class="${workout.isLast()}? 'disabled' : ''">
+            <span th:if='${workout.isLast()}'>Last →</span>
+            <a
+                    th:if='${not workout.isLast()}'
+                    th:href="${workout.getTotalPages() - 1}"
+            >
+                Last →
+            </a>
+        </li>
+    </ul>
+</nav>
 
 
 <script th:replace="partials/partials.html :: bootstrap-js"></script>

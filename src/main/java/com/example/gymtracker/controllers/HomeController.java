@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,11 +32,13 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, @PageableDefault(value = 10, direction = Sort.Direction.DESC) Pageable pageable) {
 
         List<Workout> workoutList = workoutDao.findAll();
 
-        Page<Workout> name = pagingDao.findAll(PageRequest.of(0,5));
+//        Page<Workout> name = pagingDao.findAll(PageRequest.of(0,5));
+
+        Page<Workout> name = pagingDao.findAll(pageable);
 
         System.out.println(name);
 
@@ -43,6 +46,21 @@ public class HomeController {
         Collections.reverse(workoutList);
 
         model.addAttribute("workout",name);
+
+        return "views/home";
+    }
+
+    @GetMapping("/{id}")
+    public String exercisePageNext(Model model, @PageableDefault(size = 5) Pageable pageable, @PathVariable int id) {
+
+        List<Workout> list = workoutDao.findAll();
+
+        System.out.println(list.get(1));
+
+
+        Page<Workout> pages = pagingDao.findAllBy(pageable.withPage(id));
+
+        model.addAttribute("workout", pages);
 
         return "views/home";
     }
