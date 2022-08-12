@@ -47,11 +47,11 @@
     </table>
 </section>
 
-<nav class="text-center">
+<nav class="container text-center">
     <ul class="pagination">
         <li th:class="${workout.isFirst()}? 'disabled' : ''">
             <span th:if='${workout.isFirst()}'>← First</span>
-            <a th:if='${not workout.isFirst()}' th:href="'?workout=0'">
+            <a th:if='${not workout.isFirst()}' th:href="@{/0}">
                 ← First
             </a>
         </li>
@@ -65,7 +65,6 @@
                 «
             </a>
         </li>
-        <-- Show a link to each workout -->
         <li th:each="i : ${#numbers.sequence(1, workout.getTotalPages())}">
                 <span
                         th:if='${(i - 1) == param.workout}'

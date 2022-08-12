@@ -51,7 +51,7 @@ public class HomeController {
     }
 
     @GetMapping("/{id}")
-    public String exercisePageNext(Model model, @PageableDefault(size = 5) Pageable pageable, @PathVariable int id) {
+    public String exercisePageNext(Model model, @PageableDefault(size = 10) Pageable pageable, @PathVariable int id) {
 
         List<Workout> list = workoutDao.findAll();
 
