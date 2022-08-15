@@ -100,7 +100,7 @@
             <span th:if='${workout.isLast()}'></span>
             <a
                     th:if='${not workout.isLast()}'
-                    th:href="'?pageSize=5&pageNo=' + ${(workout.getNumber() + 1)}"
+                    th:href="'?pageSize=5&pageNo=' + ${(workout.getTotalPages() - 1)}"
             class="mx-2">
                 Last
             </a>
