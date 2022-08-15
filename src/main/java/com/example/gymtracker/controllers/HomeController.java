@@ -32,7 +32,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home(Model model, @PageableDefault(value = 10, direction = Sort.Direction.DESC) Pageable pageable) {
+    public String home(Model model, @PageableDefault(value = 5, direction = Sort.Direction.ASC) Pageable pageable) {
 
         List<Workout> workoutList = workoutDao.findAll();
 
@@ -50,12 +50,23 @@ public class HomeController {
         return "views/home";
     }
 
+
+    @GetMapping("/home")
+    public String getAllWorkouts(Model model, Integer pageNo, Integer pageSize){
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+
+        Page<Workout> pagedResults = pagingDao.findAll(paging);
+
+        model.addAttribute("workout", pagedResults);
+
+        return "views/home";
+    }
+
+
     @GetMapping("/{id}")
-    public String exercisePageNext(Model model, @PageableDefault(size = 10) Pageable pageable, @PathVariable int id) {
+    public String exercisePageNext(Model model, @PageableDefault(size = 5) Pageable pageable, @PathVariable int id) {
 
         List<Workout> list = workoutDao.findAll();
-
-        System.out.println(list.get(1));
 
 
         Page<Workout> pages = pagingDao.findAllBy(pageable.withPage(id));

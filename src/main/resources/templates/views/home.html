@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/partials.html :: head ('Fitness App')"></head>
-<body>
+<body class="gradient-custom-2">
 
 <header th:replace="partials/partials.html :: navbar"></header>
 
-<h1 class="d-flex justify-content-center">Fitness App</h1>
+<h1 class="d-flex justify-content-center my-5">Being Fit</h1>
 
+<div class="home-nav-background py-5 text-danger text-uppercase text-center">
+    <h2>Welcome to the best fitness site</h2>
+    <h3>Here you can find new workouts to build the physique you want</h3>
+    <h4>Create your own personal workouts or find one you like</h4>
+</div>
 
-<nav class="container">
-    <div class="card-deck d-flex justify-content-center mt-5">
-        <div class="card mx-1">
-            <a href="/strength"><img class="card-img-top" src="images/dest.jpg" alt="Card image cap"></a>
+<nav class="container my-5">
+        <div class="card-deck d-flex justify-content-center">
+            <div class="card mx-1">
+                <a href="/strength"><img class="card-img-top" src="images/dest.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card mx-1">
+                <a href="/endurance"><img class="card-img-top" src="images/dumbbelsmall.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card mx-1">
+                <a href="/weigh-loss"><img class="card-img-top" src="images/lose1.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card mx-1">
+                <a href="/cardio"><img class="card-img-top" src="images/running1.jpg" alt="Card image cap"></a>
+            </div>
         </div>
-        <div class="card mx-1">
-            <a href="/endurance"><img class="card-img-top" src="images/dumbbelsmall.jpg" alt="Card image cap"></a>
-        </div>
-        <div class="card mx-1">
-            <a href="/weigh-loss"><img class="card-img-top" src="images/lose1.jpg" alt="Card image cap"></a>
-        </div>
-        <div class="card mx-1">
-            <a href="/cardio"><img class="card-img-top" src="images/running1.jpg" alt="Card image cap"></a>
-        </div>
-    </div>
-</nav>
+    </nav>
+
 
 
 <section class="container mt-5">
@@ -48,21 +54,22 @@
 </section>
 
 <nav class="container text-center">
-    <ul class="pagination">
+    <ul class="pagination d-flex justify-content-center mt-5">
         <li th:class="${workout.isFirst()}? 'disabled' : ''">
-            <span th:if='${workout.isFirst()}'>← First</span>
-            <a th:if='${not workout.isFirst()}' th:href="@{/0}">
-                ← First
+            <span th:if='${workout.isFirst()}' class="mx-2"></span>
+            <a th:if='${not workout.isFirst()}' th:href="@{home?pageSize=5&pageNo=0}">
+                First
             </a>
         </li>
         <li th:class="${workout.hasPrevious()}? '' : 'disabled'">
-            <span th:if='${not workout.hasPrevious()}'>«</span>
+            <span th:if='${not workout.hasPrevious()}'>First</span>
             <a
                     th:if='${workout.hasPrevious()}'
-                    th:href="${workout.getNumber() - 1}"
+                    th:href="'home?pageSize=5&pageNo=' + ${(workout.getNumber() - 1)}"
                     title='Go to previous workout'
+                    class="mx-3"
             >
-                «
+                Back
             </a>
         </li>
         <li th:each="i : ${#numbers.sequence(1, workout.getTotalPages())}">
@@ -75,26 +82,27 @@
                     th:if='${not ((i - 1) == param.workout)}'
                     th:href="${(i -1)}"
             >
-                <span th:text='${i}'>1</span>
+<!--                <span th:text='${i}' class="text-success">1</span>-->
             </a>
         </li>
         <li th:class="${workout.hasNext()} ? '' : 'disabled'">
-            <span th:if='${not workout.hasNext()}'>»</span>
+            <span th:if='${not workout.hasNext()}' class="mx-2">Last</span>
             <a
                     th:if='${workout.hasNext()}'
-                    th:href="${workout.getNumber() + 1}"
+                    th:href="'home?pageSize=5&pageNo=' + ${(workout.getNumber() + 1)}"
                     title='Go to next workout'
+                    class="mx-3"
             >
-                »
+                Next
             </a>
         </li>
         <li th:class="${workout.isLast()}? 'disabled' : ''">
-            <span th:if='${workout.isLast()}'>Last →</span>
+            <span th:if='${workout.isLast()}'></span>
             <a
                     th:if='${not workout.isLast()}'
-                    th:href="${workout.getTotalPages() - 1}"
-            >
-                Last →
+                    th:href="'?pageSize=5&pageNo=' + ${(workout.getNumber() + 1)}"
+            class="mx-2">
+                Last
             </a>
         </li>
     </ul>

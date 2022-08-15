@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials.html :: head (title)"></head>
-<body>
+<body class="gradient-custom-2">
     <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <!--    <h1 th:text="${id}"></h1>-->
@@ -10,11 +10,17 @@
 <!--    <p th:text="${workout}"></p>-->
 
 
-    <h2 class="text-center mt-5">Workouts Created</h2>
+    <div class="d-flex justify-content-center mt-5">
+        <h2 class="text-center">Welcome</h2>
+        <h2 class="mx-2" th:text="${user}"></h2>
+    </div>
 
-    <div class="container d-flex justify-content-center mt-5">
+    <div class="container mt-5">
+        <p>Workouts Created</p>
         <th:block th:each="work: ${workout}">
-            <a th:href="@{/exercise/{id}(id=${work.id - 1})}"><p class="mx-5" th:text="${work.name}" /></a>
+            <ul>
+                <a th:href="@{/exercise/{id}(id=${work.id - 1})}"><li class="mx-5" th:text="${work.name}" /></a>
+            </ul>
         </th:block>
     </div>
 

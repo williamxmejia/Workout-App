@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="partials/partials.html :: head ('Exercises')"></head>
-<body>
+<body class="gradient-custom-2">
     <header th:replace="partials/partials.html :: navbar"></header>
 
     <section class="container">
@@ -46,7 +46,7 @@
                 <textarea type="text" th:field="*{content}" id="exerciseOne" class="form-control" rows="15"></textarea>
             </div>
 
-            <button>Create</button>
+            <button type="submit" class="btn btn-primary mt-2">Create</button>
         </form>
     </section>
 
