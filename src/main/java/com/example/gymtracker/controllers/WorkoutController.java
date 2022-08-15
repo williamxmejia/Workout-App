@@ -42,7 +42,7 @@ public class WorkoutController {
 
         workoutDao.save(workout);
 
-        return "redirect:";
+        return "redirect:/";
     }
 
     @GetMapping("/exercise/{id}")
