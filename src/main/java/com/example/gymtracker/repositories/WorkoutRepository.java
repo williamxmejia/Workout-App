@@ -15,6 +15,10 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 
     List<Workout> findByNameContains(String name);
 
+    List<Workout> findByNameContainsIgnoreCase(String name);
+
+
+
 
 
 
