@@ -11,6 +11,16 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 
     List<Workout> findByTypeOfWorkout(String typeOfWorkout);
 
+    List<Workout> findByName(String name);
+
+    List<Workout> findByNameContains(String name);
+
+
+
+
+
+
+
 
 
 

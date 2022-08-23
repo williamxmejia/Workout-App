@@ -106,6 +106,20 @@ public class WorkoutController {
         return "views/exercises/endurance";
     }
 
+    @GetMapping("/search")
+    public String searchWorkouts(Model model, @RequestParam(name = "search") String search){
+
+        List<Workout> workoutList = workoutDao.findByNameContains(search);
+
+        System.out.println(workoutList);
+
+
+        model.addAttribute("workout", workoutList);
+
+        return "views/exercises/search";
+    }
+
+
 
 
 }
