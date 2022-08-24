@@ -109,14 +109,18 @@ public class WorkoutController {
     @GetMapping("/search")
     public String searchWorkouts(Model model, @RequestParam(name = "search") String search){
 
-        List<Workout> workoutList = workoutDao.findByNameContainsIgnoreCase(search);
+        if(search.isBlank()){
+            return "views/exercises/search";
+        } else {
+            List<Workout> workoutList = workoutDao.findByNameContainsIgnoreCase(search);
 
-        System.out.println(workoutList);
+            System.out.println(workoutList);
 
+            model.addAttribute("workout", workoutList);
 
-        model.addAttribute("workout", workoutList);
-
+        }
         return "views/exercises/search";
+
     }
 
     @GetMapping("/workout-search")
