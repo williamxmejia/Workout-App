@@ -110,13 +110,17 @@ public class WorkoutController {
     public String searchWorkouts(Model model, @RequestParam(name = "search") String search){
 
         if(search.isBlank()){
-            return "views/exercises/search";
+            return "views/exercises/empty-search";
         } else {
             List<Workout> workoutList = workoutDao.findByNameContainsIgnoreCase(search);
 
             System.out.println(workoutList);
 
             model.addAttribute("workout", workoutList);
+
+            if(workoutList.isEmpty()){
+                return "views/exercises/search";
+            }
 
         }
         return "views/exercises/search";
